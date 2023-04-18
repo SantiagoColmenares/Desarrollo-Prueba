@@ -1,19 +1,48 @@
 export class NavMenu extends HTMLElement{
-    constructor(){
-        super();
-        this.attachShadow({ mode:"opnen" });
+    constructor() {
+      super();
+      this.attachShadow({ mode: "open" });
     }
     connectedCallback() {
-        this.shadowRoot.innerHTML=`
-    <div class="nav-container">
+      this.shadowRoot.innerHTML = /* html */`
+        <style rel="stylesheet">
+            @import "./app/Components/navMenu/menuStyle.css";
+        </style>
         <nav>
-            <section class="container1">
-                <img id="logo" src="/images/logoWhite.png" alt="">
-                <a class="alink" href="">Inicio</a>
-                <a class="alink" href="servicios/servicios.html">Servicios</a>
-                <a class="alink" href="">Nosotros</a>
-            </section>
+            <div class="nav-container">
+                <img id="logo" src="/img/logoWhite.png" alt="">
+                <ul class="links-container">               
+                    <li class="link-item"><a class="mainMenu" href="#" data-verocultar='["i"]'>Inicio</a></li>
+                    <li class="link-item"><a class="mainMenu" href="#" data-verocultar='["s"]'>Servicios</a></li>
+                    <li class="link-item"><a class="mainMenu" href="#" data-verocultar='["t"]'>Soporte</a></li>
+                </ul>
+            </div>
         </nav>
-    </div>`
-    }
-}
+      `;
+      this.shadowRoot.querySelectorAll(".mainMenu").forEach((val, id) => {
+            val.addEventListener("click", (e)=>{
+                let data = JSON.parse(e.target.dataset.verocultar);
+                console.log(data);
+                let mainContent = document.querySelector('#mainContent');
+                mainContent.innerHTML= "";
+                switch (data[0]){
+                  case 'i':
+                    mainContent.innerHTML="<main-content></main-content>";
+                    break;
+                  case 's':
+                    mainContent.innerHTML="<service-content></service-content>";
+                    break;
+                  case 't':
+                    mainContent.innerHTML="<support-content></support-content>";
+                    break;
+                }
+                e.stopImmediatePropagation();
+                e.preventDefault();
+
+            })
+        });
+    
+  }
+  
+}     
+customElements.define("nav-menu", NavMenu);

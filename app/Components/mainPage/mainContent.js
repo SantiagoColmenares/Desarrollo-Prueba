@@ -4,9 +4,9 @@ export class MainContent extends HTMLElement{
         this.attachShadow({mode: "open"});
     }
     connectedCallback() {
-        this.shadowRoot.innerHTML = `
+        this.shadowRoot.innerHTML = /* html */`
     <style rel="stylesheet">
-        @import "./App/Components/mainPage/mainStyle.css";
+        @import "./app/Components/mainPage/mainContent.css";
     </style>
 
     <div class="first-message">
