@@ -5,8 +5,8 @@ import './Components/shop/shopContent.js';
 import './Components/support/supportContent.js';
 
 window.addEventListener("load",(e) =>{
-    let mainContent = document.querySelector('mainContent');
-    mainContent.innerHTML = "<main-comtent></main-content>";
+    let mainContent = document.querySelector('#mainContent');
+    mainContent.innerHTML = "<main-content></main-content>";
     e.stopImmediatePropagation();
     e.preventDefault();
 })

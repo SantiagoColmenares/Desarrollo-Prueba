@@ -1,4 +1,4 @@
-import { Servicio } from "../../db/servicios.js";
+import { Servicios } from "../../db/servicios.js";
 export class ServiceContent extends HTMLElement{
     constructor() { 
         super();
@@ -7,8 +7,9 @@ export class ServiceContent extends HTMLElement{
       connectedCallback() {
         this.shadowRoot.innerHTML = /* html */`
           <style rel="stylesheet">
-              @import "./app/Components/servicios/serviceStyle.css";
-              @import "./app/Components/mainPage/mainContent.css";
+              @import "app/Components/servicios/serviceStyle.css";
+              @import "app/Components/mainPage/mainContent.js";
+              @import "otros/apps.css";
           </style>
 
           <div class="first-message">
@@ -52,7 +53,7 @@ export class ServiceContent extends HTMLElement{
        
       }
     mostrarTarjeta(){
-        Servicio.forEach(e => {
+        Servicios.forEach(e => {
             let divTarjeta = this.shadowRoot.querySelector("#tarjeta");
             let content = document.createElement("div");
             content.className="tarjetas"
@@ -75,11 +76,9 @@ export class ServiceContent extends HTMLElement{
     buscarServicio (servicio){
       let content = document.createElement("div");
       const modal = this.shadowRoot.querySelector("#content-body");
-      /*let divTabla = this.shadowRoot.querySelector("#table");*/
-      /*const openModalBtn = this.shadowRoot.querySelector("#btn"+servicio);
-      const closeModal = document.getElementsByClassName("close")[0];*/
       modal.innerHTML = "";
-      const result = Servicio.filter(service=>service.id==servicio);
+      const result = Servicios.filter(service=>service.id==servicio);
+      const resultf = JSON.parse(JSON.stringify({...result.length-1}))
       content.innerHTML=/*html*/`
             <table>
               <tr>

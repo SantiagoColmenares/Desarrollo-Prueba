@@ -6,7 +6,7 @@ export class ShopContent extends HTMLElement{
       connectedCallback() {
         this.shadowRoot.innerHTML = /* html */`
           <style rel="stylesheet">
-              @import "./App/Components/shop/shopStyle.css";
+              @import "app/Components/shop/shopStyle.css";
           </style>
           <h1>Pagina Shop</h1>
         `;
